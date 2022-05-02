@@ -33,6 +33,7 @@ function getPlanSubPlanPrice(plan, subPlan) {
 
 const agregarCliente = () => {
     const seccionClientes = document.querySelector("#mostrarClientes");
+    seccionClientes.style.display = "block";
     const ul = document.createElement("ul");
     const li = document.createElement("li");
     let plan = "";
@@ -70,7 +71,6 @@ const agregarCliente = () => {
     document.querySelector("#nombreCliente").value = "";
     document.querySelector("#agregarCliente").reset();
     document.querySelector("#subPlans-list").classList.add("subPlanHide");
-
 
 }
 
