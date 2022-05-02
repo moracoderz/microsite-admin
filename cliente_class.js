@@ -31,7 +31,7 @@ const planes = [
         {
             idPlan: 2,
             nombre: "Plan Avanzado",
-            precio: 180,
+            precio: 150,
             descripcion: "Plan avanzado de diseño",   
             subPlanes: [
                 {

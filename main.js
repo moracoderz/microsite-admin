@@ -37,6 +37,7 @@ const agregarCliente = () => {
     const li = document.createElement("li");
     let plan = "";
     let subPlan = "";
+    let total = 0;
 
     let nombreCli = validateNombreCli(document.querySelector("#nombreCliente").value);
 
@@ -54,7 +55,7 @@ const agregarCliente = () => {
         }
     }
 
-    let total = getPlanSubPlanPrice(plan, subPlan);
+    total = getPlanSubPlanPrice(plan, subPlan);
 
     li.textContent = `Nombre: ${nombreCli} \nPlan: ${plan} \nSub Plan: ${subPlan} \nTotal: ${total}`;
     
