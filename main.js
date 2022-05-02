@@ -1,69 +1,28 @@
-alert("Selecciona Plan Simple o Plan Avanzado");
-let salida = '';
-
-class Cliente {
-    constructor (nombreCli, plan, subPlan, total) {
-        this.nombreCli = nombreCli;
-        this.plan = plan;
-        this.subPlan = subPlan;
-        this.total = total;
+function validateNombreCli(auxNombreCli) {
+    if (auxNombreCli === "" || auxNombreCli === null) {
+        alert("Ingrese nombre del cliente");
+        return false;
+    } else {
+        return auxNombreCli.toLowerCase();
     }
 }
-let clientes = [];
-const planes = [
-        {
-            idPlan: 1,
-            nombre: "Plan Basico",
-            precio: 80,
-            descripcion: "Plan basico de diseño",
-            subPlanes: [
-                {
-                    idSub: 1,
-                    nombre: "6 Meses",
-                    precio: 50,
-                    descripcion: "Plan a 6 meses"
-                },
-                {
-                    idSub: 2,
-                    nombre: "12 Meses",
-                    precio: 150,
-                    descripcion: "Plan a 12 meses"
-                }
-            ]        
-        },
-        {
-            idPlan: 2,
-            nombre: "Plan Avanzado",
-            precio: 180,
-            descripcion: "Plan avanzado de diseño",   
-            subPlanes: [
-                {
-                    idSub: 1,
-                    nombre: "6 Meses",
-                    precio: 50,
-                    descripcion: "Plan a 6 meses"
-                },
-                {
-                    idSub: 2,
-                    nombre: "12 Meses",
-                    precio: 150,
-                    descripcion: "Plan a 12 meses"
-                }
-            ]            
-        }
-];
+
+function eleccionPlan() {
+    let ulSubPlanes = document.querySelector("#subPlans-list");
+    ulSubPlanes.classList.remove("subPlanHide");
+}
 
 function getPlanSubPlanPrice(plan, subPlan) {
     
     let precioSubPlan = 0;
     let precioPlan = 0;
-    for (let i = 0; i < planes.length; i++) {
-        if (planes[i].idPlan === plan) {
-            
-            for (let j = 0; j < planes[i].subPlanes.length; j++) {
-                if (planes[i].subPlanes[j].idSub === subPlan) {
-                    precioPlan = planes[i].precio;
-                    precioSubPlan = planes[i].subPlanes[j].precio;
+
+    for (let k = 0; k < planes.length; k++) {
+        if (planes[k].idPlan === plan) {
+            for (let l = 0; l < planes[k].subPlanes.length; l++) {
+                if (planes[k].subPlanes[l].idSub === subPlan) {
+                    precioPlan = planes[k].precio;
+                    precioSubPlan = planes[k].subPlanes[l].precio;
                 }
             }
         }
@@ -71,64 +30,61 @@ function getPlanSubPlanPrice(plan, subPlan) {
     return (precioPlan + precioSubPlan);
 }
 
-function valPlan() {
-    let plan = parseInt(prompt("Ingrese selección de Plan: 1: Simple, 2: Avanzado"));
-    while (plan != 1 && plan != 2) {
-        if (plan === 1 || plan === 2) {
-            return plan;
-        } else {
-            alert('Dato ingresado es incorrecto');
-            plan = parseInt(prompt("Ingrese selección de Plan: 1: Simple, 2: Avanzado"));
+
+const agregarCliente = () => {
+    const seccionClientes = document.querySelector("#mostrarClientes");
+    const ul = document.createElement("ul");
+    const li = document.createElement("li");
+    let plan = "";
+    let subPlan = "";
+
+    let nombreCli = validateNombreCli(document.querySelector("#nombreCliente").value);
+
+    const seleccionarPlanes = document.querySelector("#agregarCliente");
+    for (i of seleccionarPlanes.plan) {
+        if (i.checked) {
+            plan = parseInt(i.value);           
         }
     }
-    return plan;
-}
 
-function valSubPlan() {
-    let subPlan = parseInt(prompt("Seleccionar Sub Plan Meses: 1: 6 Meses, 2: 12 Meses"));
-    while (subPlan != 1 && subPlan != 2) {
-        if (subPlan === 1 || subPlan === 2) {
-            return subPlan;
-        } else {
-            alert('Dato ingresado es incorrecto');
-            subPlan = parseInt(prompt("Seleccionar Sub Plan Meses: 1: 6 Meses, 2: 12 Meses"));
+    const seleccionarSubPlanes = document.querySelector("#agregarCliente");
+    for (j of seleccionarSubPlanes.subPlan) {
+        if (j.checked) {
+            subPlan = parseInt(j.value);           
         }
     }
-    return subPlan;
-}
 
-while (salida != 'N') {
-
-
-    let nombreCli = prompt("Ingrese nombre del cliente");
-    let plan = valPlan();
-    let subPlan = valSubPlan();
     let total = getPlanSubPlanPrice(plan, subPlan);
 
-    clientes.push(new Cliente(nombreCli.toLowerCase(), plan, subPlan, total));
+    li.textContent = `Nombre: ${nombreCli} \nPlan: ${plan} \nSub Plan: ${subPlan} \nTotal: ${total}`;
+    
+    clientes.push(new Cliente(nombreCli, plan, subPlan, total));
 
-    // Validar Salida
-    salida = prompt("Desea continuar? N para salir \npresione cualquier tecla para continuar");
-    if (salida == 'N' || salida == 'n' || salida === null) {
-        salida = 'N';
-    } else {
-        salida = 'S';
-    }
+    // Agregando los clientes a la lista en el DOM
+    seccionClientes.appendChild(ul);
+    ul.appendChild(li);
+    li.appendChild(document.createElement("hr"));
 
-} // Fin del while
+    // Limpiar los campos   
+    document.querySelector("#nombreCliente").value = "";
+    document.querySelector("#agregarCliente").reset();
+    document.querySelector("#subPlans-list").classList.add("subPlanHide");
 
-alert ("Clientes registrados: " + clientes.length);
-console.log ();
 
-// Mostrar Clientes
-for (let i = 0; i < clientes.length; i++) {
-    console.log(`Nombre: ${clientes[i].nombreCli} \nPlan: ${clientes[i].plan} \nSub Plan: ${clientes[i].subPlan} \nTotal: ${clientes[i].total}`);
 }
 
-// Buscar Cliente
-let buscar = prompt("Ingrese nombre del cliente a buscar");
-const cliResult = clientes.filter((element, index) => { return element.nombreCli === buscar.toLowerCase() });
-console.log(`\nSe ha encontrado [${cliResult.length} cliente(s)]`);
-for (let i = 0; i < cliResult.length; i++) {
-    console.log(`Nombre: ${cliResult[i].nombreCli} \nPlan: ${cliResult[i].plan} \nSub Plan: ${cliResult[i].subPlan} \nTotal: ${cliResult[i].total}`);
+
+
+
+
+const loadEvents = () => {
+    document.querySelector("#agregarClienteBtn").addEventListener("click", agregarCliente);
+
+    const clickPlan = document.querySelectorAll("input[name='plan']");
+    for (i of clickPlan) {
+            i.onchange = () => { eleccionPlan(); }
+    
+        
+    }
+
 }

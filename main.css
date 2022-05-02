@@ -277,6 +277,29 @@ ul.followme li a:hover::before {
     justify-content: center;
 }
 
+#subPlans-list {
+    list-style: none;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#subPlans-list li {
+    height: 108px;
+    padding: 50px 50px 85px 50px;
+    text-align: center;
+    width: 135px;
+    margin: 45px 10px 10px 10px;
+    background: #52377d;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .text-plans {
     color: #fff; 
     display: block;
@@ -323,6 +346,16 @@ ul.followme li a:hover::before {
     width: 100%;
 
 }
+
+.subPlanHide {
+    display: none !important;
+}
+
+/* Sección Mostrar Datos de Clientes */
+#mostrarClientes {
+    display: block;
+}
+
 
 footer .footer-inner {
     color: #fff;

@@ -3,13 +3,14 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Desafío Clase 05 -</title>
+        <title>Desafío Clase 06 - DOM & EVENTS</title>
+
         <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:700|Open+Sans+Condensed:wght@300;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="main.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
 
     </head>
-<body>
+<body onload="loadEvents()">
     <section id="hero">
         <div class="hero-inner">
             <header>
@@ -23,22 +24,17 @@
                         <li><a href="#">Contáctame</a></li>
                     </ul>
                 </nav>
-             </header>
+            </header>
             <div class="hero-content">
                 <h1 class="name-title">MORAIMA RIOS</h1>
                 <h3 class="sub-title">DESAFÍO N.5 - DOM </h3>
                 <span class="description">
-                >> Consigna: Traslada al proyecto integrador el concepto de objetos, visto en la clase de hoy. En función del tipo de simulador que hayas elegido, deberás: <br>
+                >> Consigna: Traslada al proyecto integrador el concepto de objetos. En función del tipo de simulador que hayas elegido, deberás: <br>
                 Crear elementos manipulando el DOM a partir de la informaciòn de tus objetos. <br>
                 Modificar etiquetas existentes en función del resultado de operaciones. <br>
                 >>Aspectos a incluir en el entregable:
-                Archivo HTML y Archivo JS, referenciado en el HTML por etiqueta
-                <script src="js/miarchivo.js"></script>, que incluya la definición de un algoritmo en JavaScript que opere sobre el DOM, modificando, agregando o eliminado elementos.
+                Archivo HTML y Archivo JS, referenciado en el HTML, que incluya la definición de un algoritmo en JavaScript que opere sobre el DOM, modificando, agregando o eliminado elementos.</span> <br><br />
 
-
-                 <br>
-                </span>
-                <br />
                 <span class="followme-title">Contáctame</span>
                 <ul class="followme">
                     <li><a href="https://twitter.com/moraimarp"><i class="fab fa-twitter-square"></i></a></li>
@@ -46,36 +42,88 @@
                     <li><a href="https://github.com/mripz"><i class="fab fa-github-alt"></i></a></li>
                     <li><a href="https://www.linkedin.com/in/moraimarp/"><i class="fab fa-linkedin"></i></a></li>
                 </ul>
-                <a id="now-more" href="#">Conoce más</a> <a id="contact-hero" href="#">Contáctame!!!!</a>
-             </div>
+                <a id="now-more" href="#">Conoce más</a> 
+                <a id="contact-hero" href="#">Contáctame!!!!</a>
+            </div>
         </div>
-     </section>
-     <section id="main">
+    </section>
+
+    <section id="main">
         <section class="panel" id="plans">
             <h1 class="main-panel-title">Selecciona tú Plan en unos pocos clics</h1>
-            <span class="text-plans">Únete a las cientos de miles de pequeñas empresas que han confiado en la plataforma de creación de microwebs en línea. Encuentra el plan adecuado para tu empresa
-</span>
-            </span><br /><br /><br /><br />
-            <ul id="plans-list" class="shorthand">
-                <li>
-                <div class="cardBox">
+            <span class="text-plans">Únete a las cientos de miles de pequeñas empresas que han confiado en la plataforma de creación de microwebs en línea. Encuentra el plan adecuado para tu empresa</span>
 
-                    <div class="cardInfo">
-                        <h2>Diseño Simple $80</h2>
-                        <p>Diseño simple, con una sola página web.</p>
-                        <a class="glitch cardLink" data-text="GLITCH" href="#"><p>Agregar al carrito</p></a>
-                    </div>
-                </div>
-                </li>
-                <li><a class="glitch" data-text="GLITCH" href="#"><img class="plansimg" src="img/service2.png" />Diseño Avanzado<br>$180</a></li>
-            </ul>
+            <form id="agregarCliente" class="text-plans">
+                <label for="nombreCli">Tú Nombre</label>
+                <input type="text" id="nombreCliente">
+
+                <!-- <label for="nombreCli">Email</label>
+                <input type="email" id="emailCliente">
+
+                <label for="nombreCli">Tel</label>
+                <input type="number" id="phoneCliente"> -->
+                
+                <ul id="plans-list" class="shorthand">
+                    <li>
+                        <div class="cardBox">
+                            <div class="cardInfo">
+                                <h4>Diseño Simple</h4><h1>$80</h1>
+                                <label for="plan">Plan Simple</label>
+                                <br><br> <input type="radio" name="plan" class="plan" id="planSimple" value="1">
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="cardBox">
+                            <div class="cardInfo">
+                                <h4>Diseño Avanzado</h4><h1>$150</h1>
+                                <label for="plan">Plan Avanzado</label>
+                                <br><br> <input type="radio" name="plan" class="plan" id="planAvanzado" value="2">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <ul id="subPlans-list" class="shorthand subPlanHide">
+                    <li>
+                        <div class="cardBox">
+                            <div class="cardInfo">
+                                <h2>Sub Plan 1</h2>
+                                <label for="subPlan">Por 6 Meses $50</label> <br>
+                                <input type="radio" name="subPlan" class="subPlan" id="plan6meses" value="1">
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="cardBox">
+                            <div class="cardInfo">
+                                <h2>Sub Plan 2</h2>
+                                <label for="subPlan">Por 12 Meses $150</label> <br>
+                                <input type="radio" name="subPlan" class="subPlan" id="plan12meses" value="2">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                
+                <br><br><br>
+                <button type="button" id="agregarClienteBtn">Enviar</button>
+            </form>
+
+            </span>
+
         </section>
 
-     </section>
+        <section id="mostrarClientes" class="text-plans" style="display: hide;">
+             <!-- <span id="resultado"></span> -->
+
+        </section>
+
+    </section>
+
     <footer>
         <div class="footer-inner">Copyright© 2022 | moracodetester.com</div>
     </footer>
     <br><br><br><br><br><br>
-    <!-- <script src="main.js"></script> -->
+            <script src="main.js"></script>
+            <script src="cliente_class.js"></script>
 </body>
 </html>
